@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Fliable{% endblock %}
+
+{% block content %}
+    <div class='header'>
+        <div class="form-div">
+            <h1>Fliable</h1>
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <label>From : </label>
+                        <input type="text" class="form-control" placeholder="Bangalore" disabled>
+                    </div>
+                    <div class="col">
+                        <label>To : </label>
+                        <input type="text" class="form-control" placeholder="Delhi" disabled>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="formGroupExampleInput2">Date of journey : </label>
+                        <input type="date" class="form-control" placeholder="Date of journey">
+                    </div>
+                    <div class="col">
+                        <label>Route : </label>
+                        <input type="text" class="form-control" placeholder="One-way" disabled>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Class : </label>
+                    <input type="text" class="form-control" placeholder="Economy" disabled>
+                </div>  
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+        </div>
+    </div>
+    <section class='about_section'>
+        <h1>about</h1>
+        <div class='flex-box'>
+            <div>
+                <img src='../static/img/about_img.jpg' alt='about image'>
+            </div>
+            <div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div>
+            <h2>&copy; Amber ujjwal linda</h2>
+            <h2>  Vijay Kumar prakash</h2>
+        </div>
+    </footer>
+{% endblock %}
