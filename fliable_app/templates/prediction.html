@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Fliable|prediction page{% endblock %}
+
+{% block style %}
+    .result-head{
+            text-transform:uppercase;
+            font-size:140%;
+            font-weight:300;
+        }
+
+    #myChart {
+    width: 100%;
+    height: 100vh;
+}
+
+.image-div{
+    width:100%;
+    height:30%;
+}
+
+.image-div img{
+    width:60%;
+    height:100%;
+}
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <br><br><br>
+        <div class="alert alert-dark result-head" role="alert">
+           Airline ID : {{ airline }}
+        </div>
+        <p>{{ predict }}</p><br><br>
+        {% comment %} {% set day = 21 %} {% endcomment %}
+        <h5 class='text-center'>FUTURE PRICES</h5>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div><br><br>
+        <div class='image-div text-center'>
+            <h5>ARIMA RESULTS</h5>
+            <img src="../static/img/ARIMA_Results.png" class="img-fluid" alt="Responsive image">
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block script %}
+    <script>
+        price={{ future_prices }};
+        window.onload = function () {
+
+            let dataPoints = [];
+            price.forEach(pri => {
+                dataPoints.push({y: pri});
+            });
+            console.log(dataPoints);
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+
+                
+                axisY:{
+                    includeZero: false
+                },
+                data: [{        
+                    type: "line",
+                    indexLabelFontSize: 16,
+                    dataPoints: dataPoints
+                }]
+            });
+            chart.render();
+
+        }
+
+    </script>
+    
+{% endblock %}

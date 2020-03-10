@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Fliable|result page{% endblock %}
+
+{% block style %}
+
+    .result{
+        transition:border 0.3s;
+
+    }
+
+    .result:hover{
+    border: solid 2px #444;
+    cursor:not-allowed;
+    }
+
+    .result-head{
+        text-transform:uppercase;
+        font-size:140%;
+        font-weight:300;
+    }
+
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <br><br><br>
+        <div class="alert alert-dark result-head" role="alert">
+            Date : {{ date }} <br>
+            {{ length }} Results :
+        </div>
+       
+        {% for i in data %}
+            <form target='_blank' action={% url 'predictions' %} method='POST'>
+                {% csrf_token %}
+                <div class="card result rounded ">
+                    <div class="card-header">
+                        {{ i.airline }}
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                        
+                        </div>
+                        <div class="col-md-3">
+                            <h5 class="card-title"></h5><br>
+                            <p class="card-text">{{ i.deptime }} - {{ i.arrtime }}</p>
+                            <p class="card-text">{{ i.carrierid }} - {{ i.flightno }}</p>
+                            <input type='text' value={{ i.carrierid }}{{ i.flightno }} name='airline_id' hidden>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="card-title"></h5><br>
+                            {% if i.stops == "0" %}
+                                <p class="card-text">direct</p>
+                            {% else %}
+                                <p class="card-text">{{ i.stops }} stop</p>
+                            {% endif %}
+                            <p class="card-text">{{ i.CINFO }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="card-title"></h5><br>
+                            <p class="card-text">{{ i.duration }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <h5 class="card-title"></h5><br>
+                            <p class="card-text">&#8377; {{ i.fare.adulttotalfare }}</p>
+                            <button type="submit" class="btn btn-primary">Predict</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+        {% endfor %}   
+    </div>
+{% endblock %}

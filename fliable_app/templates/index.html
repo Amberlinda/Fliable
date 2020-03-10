@@ -1,43 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Fliable{% endblock %}
+{% block title %}Fliable|home{% endblock %}
 
 {% block content %}
     <div class='header'>
         <div class="form-div">
             <h1>Fliable</h1>
-            <form>
+            <form method='POST' action={% url 'result' %}>
+            {% csrf_token %}
                 <div class="form-row">
                     <div class="col">
                         <label>From : </label>
-                        <input type="text" class="form-control" placeholder="Bangalore" disabled>
+                        <input type="text" class="form-control" placeholder="Bangalore" name="depature" disabled>
                     </div>
                     <div class="col">
                         <label>To : </label>
-                        <input type="text" class="form-control" placeholder="Delhi" disabled>
+                        <input type="text" class="form-control" placeholder="Delhi" name="arriving" disabled>
                     </div>
                 </div>
                 <br>
                 <div class="form-row">
                     <div class="col">
                         <label for="formGroupExampleInput2">Date of journey : </label>
-                        <input type="date" class="form-control" placeholder="Date of journey">
+                        <input type="date" class="form-control" placeholder="Date of journey" name="date">
                     </div>
                     <div class="col">
                         <label>Route : </label>
-                        <input type="text" class="form-control" placeholder="One-way" disabled>
+                        <input type="text" class="form-control" placeholder="One-way"  disabled>
                     </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Class : </label>
-                    <input type="text" class="form-control" placeholder="Economy" disabled>
+                    <input type="text" class="form-control" placeholder="Economy" name="class" disabled>
                 </div>  
                 <button type="submit" class="btn btn-dark">Submit</button>
             </form>
         </div>
     </div>
-    <section class='about_section'>
+    <section class='about_section' id='about'>
         <h1>about</h1>
         <div class='flex-box'>
             <div>

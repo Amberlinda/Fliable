@@ -119,3 +119,8 @@ footer h2{
 input[type=text]{
     cursor: not-allowed;
 }
+
+.card .col-md-2 .btn-primary{
+    margin-bottom: 15px;
+}
+
